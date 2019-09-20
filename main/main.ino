@@ -68,9 +68,12 @@ void loop() {
 
 void stepperRotateClock(int angle) { 
   int step = map(angle,0,180,0,520);  
+  myStepper.step(step);
+  delay(500);
 }
 
 void stepperRotateAnti(int angle) {
   int step = map(angle, 0, 180, 0, 520);
-}
+  myStepper.step(step);
+  delay(500);
 }
