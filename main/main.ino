@@ -4,7 +4,7 @@
 #include <SoftwareSerial.h>
 const int stepsPerRevolution = 520; 
 Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
-//Servo myservo;  // create servo object to control a servo
+Servo heightServo;  // create servo object to control a servo
 
 SoftwareSerial mySerial(12, 13); // RX, TX  
 
@@ -22,11 +22,18 @@ void stepperRotateAnti(int angle) {
   delay(500);
 }
 
+void setHeight(int height) {
+  Serial.println("Changing Height");
+  int h = map(height, 0, 90, 0, 180);
+  heightServo.write(h);
+}
+
 void setup() { 
-  myStepper.setSpeed(12);
   Serial.begin(9600);
   mySerial.begin(9600);
- // myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myStepper.setSpeed(12);
+  heightServo.attach(7);
+  heightServo.write(0);
 }
 
 void loop() {  
@@ -39,23 +46,31 @@ void loop() {
     c = mySerial.read();  
     Serial.println("Got input: ");
     Serial.println(c);
-    if (c == 0)
-    {
-      Serial.println("waiting for another bit");
+    switch (c) {
+      case 0:
+      Serial.println("Rotate Clockwise");
       if (mySerial.available()) {
-        Serial.println("another bit loaded");
         int angle = mySerial.read();
         Serial.println(angle);
         stepperRotateClock(angle);
       }
-    } else if (c == 1) {
-      Serial.println("waiting for another bit");
+      break;
+      case 1:
+      Serial.println("Rotate Anti Clockwise");
       if (mySerial.available()) {
-        Serial.println("another bit loaded");
         int angle = mySerial.read();
         Serial.println(angle);
         stepperRotateAnti(angle);
       }
+      break;
+      case 2: 
+      Serial.println("Changing Height");
+      if (mySerial.available()) {
+        int height = mySerial.read();
+        Serial.println(height);
+        setHeight(height);
+      }
+      break;
     }
   }
 }

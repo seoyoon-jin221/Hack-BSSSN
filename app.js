@@ -16,8 +16,9 @@ servoButtons[0].addEventListener( //up button
     'touchstart',
     function(e) {
         console.log("up touch started");
-        rotateStepper(180);
+      //  rotateStepper(180);
       //  app.increaseServoAngle();  
+        setHeight(45);
         e.preventDefault();
         console.log("Pressing!");
     }
@@ -220,7 +221,6 @@ app.stopServoAngle = function() {
 
 
 function rotateStepper(angle) {
-    // TODO: Test which code works!
     if (angle > 0) {
         app.sendData([0, angle]);
       //  app.sendData([angle]);
@@ -233,6 +233,6 @@ function rotateStepper(angle) {
 }
 
 function setHeight(height) {
-
+    app.sendData([2, height]);
 }
 
