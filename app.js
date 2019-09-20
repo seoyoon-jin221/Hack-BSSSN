@@ -137,16 +137,14 @@ app.disconnect = function(errorMessage)
 
     evothings.easyble.stopScan();
     evothings.easyble.closeConnectedDevices();
-    document.getElementById('startView').style.setProperty('display', 'block');
-    document.getElementById('controlsView').style.setProperty('display', 'none');
+    app.showStart();
     
 }
 
 function serviceSuccess(device)
 {
     console.log('The bluetooth module can now read and write');
-    document.getElementById('startView').style.setProperty('display', 'none');
-    document.getElementById('controlsView').style.setProperty('display', 'block');
+    app.showControls();
     app.device.writeCharacteristic(
         app.SERVICE_UUID,
         function()

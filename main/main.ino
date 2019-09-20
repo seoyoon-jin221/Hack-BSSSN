@@ -55,8 +55,10 @@ void loop() {
     else if ( c == 2 )
       Serial.println("keep still");
       */
+    if(c==1)
+      stepperRotateClock(1);
+      
 
-    
   }
   //Serial.println(myservo.read()); 
   
