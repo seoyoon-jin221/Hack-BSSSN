@@ -236,3 +236,6 @@ function setHeight(height) {
     app.sendData([2, height]);
 }
 
+function setDistance(distance) {
+    app.sendData([3, distance]);
+}
