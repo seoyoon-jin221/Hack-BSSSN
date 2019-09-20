@@ -178,7 +178,7 @@ app.sendData = function(data)
 {
     if (app.connected && app.device != null)
     {
-        data = new Uint8Array([data]);
+        data = new Uint8Array(data);
         app.device.writeCharacteristic(
             app.CHARACTERISTIC_UUID,
             data,
@@ -239,6 +239,12 @@ app.stopServoAngle = function() {
 
 
 function rotateStepper(angle) {
+    /* TODO: Test which code works!
+    if (angle > 0)
+        app.sendData([0,angle]);
+    else if (angle < 0)
+        app.sendData([1,-angle]);
+    */
     var bit8Array = parseAngle(angle);
     if (angle > 0) {
         var i;
@@ -266,3 +272,8 @@ function parseAngle(angle) {
     }
     return bitArray;
 }
+
+function setHeight(height) {
+
+}
+

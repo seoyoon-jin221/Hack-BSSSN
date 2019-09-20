@@ -31,12 +31,24 @@ void setup() {
 
 void loop() {  
   int c;
+
   val = myservo.read(); //current servo position
          
  
   if (mySerial.available()) {
     c = mySerial.read();  
     Serial.println("Got input:");
+    if (c == 0)
+    {
+      int angle = mySerial.read();
+      stepperRotateClock(angle);
+      Serial.println("Rotating clockwise: " + angle);
+    } else if (c == 1) {
+      int angle = mySerial.read();
+      stepperRotateAnti(angle);
+      Serial.println("Rotating clockwise: " + angle);
+    }
+
     /*
     if (c == 1)
     {
