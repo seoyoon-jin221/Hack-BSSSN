@@ -12,31 +12,20 @@ var servoControl = document.getElementById('servo-control');
 
 var servoButtons = servoControl.getElementsByClassName('button');
 
-var upTimerID;
-var downTimerID;
-
 servoButtons[0].addEventListener( //up button
     'touchstart',
     function(e) {
         console.log("up touch started");
-        app.increaseServoAngle();  
-      //requestAnimationFrame(upTimer);
+        rotateStepper(180);
+      //  app.increaseServoAngle();  
         e.preventDefault();
         console.log("Pressing!");
     }
 );
 
-function upTimer() {
-    upTimerID = requestAnimationFrame(upTimer);
-    console.log("increasing servo Angle");
-    app.increaseServoAngle();
-  }
-
-
 servoButtons[0].addEventListener(
     'touchend',
     function() {
-        //cancelAnimationFrame(upTimerID);
         console.log("up touch ended");
         counter = 0;
     }
@@ -46,25 +35,17 @@ servoButtons[1].addEventListener( //down button
     'touchstart',
     function(e) {
         console.log("down touch started");
-        app.decreaseServoAngle();
-       // requestAnimationFrame(downTimer);
+        rotateStepper(-180);
+       // app.decreaseServoAngle();
         e.preventDefault();
         console.log("Pressing!");
     }
 );
 
-function downTimer() {
-    downTimerID = requestAnimationFrame(downTimer);
-    console.log("decreasing servo Angle");
-    app.decreaseServoAngle();
-}
-
-
 
 servoButtons[1].addEventListener(
     'touchend',
     function() {
-        //cancelAnimationFrame(downTimerID);
         console.log("down touch ended");
         counter = 0;
     }
@@ -211,14 +192,14 @@ app.showControls = function()
 {
     $('#disconnect').prop('disabled', false);
     $('#startView').hide();
-    $('#controlView').show();
+    $('#controlsView').show();
 }
 
 app.showStart = function()
 {
     $('#disconnect').prop('disabled', true);
     $('#startView').show();
-    $('#controlView').hide();
+    $('#controlsView').hide();
 }
 
 app.displayServoAngle = function() {
@@ -239,38 +220,16 @@ app.stopServoAngle = function() {
 
 
 function rotateStepper(angle) {
-    /* TODO: Test which code works!
-    if (angle > 0)
-        app.sendData([0,angle]);
-    else if (angle < 0)
-        app.sendData([1,-angle]);
-    */
-    var bit8Array = parseAngle(angle);
+    // TODO: Test which code works!
     if (angle > 0) {
-        var i;
-        for (i = 8; i > 0; i++) {
-            if (array[8-i] == 1)
-                app.sendData(i);
-        }
-    } else {
-        var i;
-        for (i = 8; i > 0; i++) {
-            if (array[8-i] == 1)
-                app.sendData(i + 8);
+        app.sendData([0, angle]);
+      //  app.sendData([angle]);
+    } 
+    else if (angle < 0) {
+        app.sendData([1, -angle]);
+      //  app.sendData([-angle]);
     }
-}
-
-function parseAngle(angle) {
-    if (angle < 0)
-        angle = -angle;
-    var bitArray = [];
-    while(angle > 0 ) {
-        var bit = angle % 2;
-        bitArray.unshift(bit);
-        angle = Math.floor(angle / 2);
-
-    }
-    return bitArray;
+        
 }
 
 function setHeight(height) {
