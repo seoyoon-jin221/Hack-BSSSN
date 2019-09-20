@@ -55,8 +55,64 @@ void loop() {
     else if ( c == 2 )
       Serial.println("keep still");
       */
-    if(c==1)
+    /*if(c==1)
       stepperRotateClock(1);
+     */
+     switch (c) {
+      //move clockwise case
+        case 1:
+          stepperRotateClock(1);
+          break;
+        case 2:
+          stepperRotateClock(2);
+          break;
+          case 3:
+          stepperRotateClock(4);
+          break;
+          case 4:
+          stepperRotateClock(8);
+          break;
+          case 5:
+          stepperRotateClock(16);
+          break;
+          case 6:
+          stepperRotateClock(32);
+          break;
+          case 7:
+          stepperRotateClock(64);
+          break;
+          case 8:
+          stepperRotateClock(128);
+          break;
+       //move counter-clockwise case   
+          case 9:
+          stepperRotateAnti(1);
+          break;
+          case 10:
+          stepperRotateAnti(2);
+          break;
+          case 11:
+          stepperRotateAnti(4);
+          break;
+          case 12:
+          stepperRotateAnti(8);
+          break;
+          case 13:
+          stepperRotateAnti(16);
+          break;
+          case 14:
+          stepperRotateAnti(32);
+          break;
+          case 15:
+          stepperRotateAnti(64);
+          break;
+          case 16:
+          stepperRotateAnti(128);
+          break;
+          
+        default:
+          break;
+} 
       
 
   }
@@ -68,12 +124,9 @@ void loop() {
 
 void stepperRotateClock(int angle) { 
   int step = map(angle,0,180,0,520);  
-  myStepper.step(step);
-  delay(500);
 }
 
 void stepperRotateAnti(int angle) {
   int step = map(angle, 0, 180, 0, 520);
-  myStepper.step(step);
-  delay(500);
+}
 }
