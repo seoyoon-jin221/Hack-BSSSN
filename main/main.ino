@@ -36,7 +36,7 @@ void setDistance(int distance) {
 }
 
 void setClaw(int grasp) {
-  int c =  map(distance, 0, 100, 0, 180);
+  int c =  map(grasp, 0, 100, 0, 180);
   distanceServo.write(c);
 }
 
