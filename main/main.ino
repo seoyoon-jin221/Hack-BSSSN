@@ -6,6 +6,7 @@ const int stepsPerRevolution = 520;
 Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
 Servo heightServo;  // create servo object to control a servo
 Servo distanceServo; // servo to control bar moving back and forth
+Servo clawServo;
 
 SoftwareSerial mySerial(12, 13); // RX, TX  
 
@@ -34,6 +35,11 @@ void setDistance(int distance) {
   distanceServo.write(d);
 }
 
+void setClaw(int grasp) {
+  int c =  map(distance, 0, 100, 0, 180);
+  distanceServo.write(c);
+}
+
 void setup() { 
   Serial.begin(9600);
   mySerial.begin(9600);
@@ -42,6 +48,8 @@ void setup() {
   heightServo.write(0);
   distanceServo.attach(6);
   distanceServo.write(0);
+  clawServo.attach(5);
+  clawServo.write(0);
 }
 
 void loop() {  
@@ -85,6 +93,13 @@ void loop() {
         int distance = mySerial.read();
         Serial.println(distance);
         setDistance(distance);
+      }
+      case 4:
+      Serial.println("Changing Claw");
+      if (mySerial.available()) {
+        int grasp = mySerial.read();
+        Serial.println(grasp);
+        setClaw(grasp);
       }
       break;
     }
