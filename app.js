@@ -226,18 +226,16 @@ function rotateStepper(angle) {
     } 
     else if (angle < 0) {
         app.sendData([1, -angle]);
-    }
-        
+    }    
 }
 
 function setHeight(height) {
     app.sendData([2, height]);
-    console.log(`height: ${height}`);
+
 }
 
 function setDistance(distance) {
     app.sendData([3, distance]);
-    console.log(`distance: ${distance}`);
 }
 
 function setClaw(grasp) {
