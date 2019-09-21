@@ -623,17 +623,13 @@ function PureKnob() {
 			var rect = canvas.getBoundingClientRect();
 			var offsetX = rect.left;
 			var offsetY = rect.top;
-			console.log(`offsetY: ${offsetY}`);
 			var width = canvas.scrollWidth;
 			var height = canvas.scrollHeight;
-			console.log(`height: ${height}`);
 			var centerX =  0.5 * width;
 			var centerY = 0.5 * height;
-			console.log(`CenterY: ${centerY}`);
 			var touches = e.targetTouches;
 			var touch = null;
-			
-			
+
 			/*
 			 * If there are touches, extract the first one.
 			 */
@@ -647,10 +643,10 @@ function PureKnob() {
 			 * If a touch was extracted, calculate coordinates relative to
 			 * the element position.
 			 */
-			if (touch !== null) {
-				var touchX = touch.pageX;
+			if (touch != null) {
+				var touchX = touch.clientX;
 				x = touchX - offsetX;
-				var touchY = touch.pageY;
+				var touchY = touch.clientY;
 				y = touchY - offsetY;
 			}
 			
