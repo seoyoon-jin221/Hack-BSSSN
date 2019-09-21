@@ -1,3 +1,4 @@
+var heightValue;
 function heightKnob() {
     // Create knob element, 300 x 300 px in size.
     var knob = pureknob.createKnob(300, 300);
@@ -5,10 +6,10 @@ function heightKnob() {
     // Set properties.
     knob.setProperty('angleStart', -1 * Math.PI);
     knob.setProperty('angleEnd', 1 * Math.PI);
-    knob.setProperty('colorFG', '#88ff88');
+    knob.setProperty('colorFG', 'indigo');
     knob.setProperty('trackWidth', 0.4);
-    knob.setProperty('valMin', -180);
-    knob.setProperty('valMax', 180);
+    knob.setProperty('valMin', 0);
+    knob.setProperty('valMax', 90);
     
     // Set initial value.
     knob.setValue(0);
@@ -37,7 +38,9 @@ function heightKnob() {
     elem.appendChild(b);
     var parent = document.getElementById('controlsView');
     parent.appendChild(elem);
-
+    b.addEventListener('touchstart', function() {
+        setHeight(heightValue);
+    });
 }
 
 

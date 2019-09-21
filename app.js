@@ -223,23 +223,35 @@ app.stopServoAngle = function() {
 function rotateStepper(angle) {
     if (angle > 0) {
         app.sendData([0, angle]);
-      //  app.sendData([angle]);
     } 
     else if (angle < 0) {
         app.sendData([1, -angle]);
-      //  app.sendData([-angle]);
     }
         
 }
 
 function setHeight(height) {
     app.sendData([2, height]);
+    console.log(`height: ${height}`);
 }
 
 function setDistance(distance) {
     app.sendData([3, distance]);
+    console.log(`distance: ${distance}`);
 }
 
 function setClaw(grasp) {
     app.sendData([4, grasp]);
+}
+
+function openClaw() {
+    setClaw(0);
+}
+
+function closeClaw() {
+    setClaw(90);
+}
+
+function stepCloseClaw() {
+    app.sendData([5]);
 }

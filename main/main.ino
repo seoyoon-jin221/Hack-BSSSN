@@ -10,6 +10,8 @@ Servo clawServo;
 
 SoftwareSerial mySerial(12, 13); // RX, TX  
 
+int clawPos = 0;
+
 void stepperRotateClock(int angle) { 
   Serial.println("rotating");
   int s = map(angle,0,360,0,520);  
@@ -35,9 +37,10 @@ void setDistance(int distance) {
   distanceServo.write(d);
 }
 
-void setClaw(int grasp) {
-  int c =  map(grasp, 0, 100, 0, 180);
-  distanceServo.write(c);
+void setClaw(int pos) {
+  clawServo.write(pos);
+  clawPos = pos;
+  
 }
 
 void setup() { 
@@ -97,10 +100,14 @@ void loop() {
       case 4:
       Serial.println("Changing Claw");
       if (mySerial.available()) {
-        int grasp = mySerial.read();
-        Serial.println(grasp);
-        setClaw(grasp);
+        int clawPos = mySerial.read();
+        Serial.println(clawPos);
+        setClaw(clawPos);
       }
+      break;
+      case 5:
+      Serial.println("Step close Claw");
+      setClaw(clawPos + 5);
       break;
     }
   }

@@ -1,3 +1,4 @@
+var stepperValue;
 function stepperKnob() {
     // Create knob element, 300 x 300 px in size.
     var knob = pureknob.createKnob(300, 300);
@@ -16,7 +17,7 @@ function stepperKnob() {
 
     var listener = function(knob, value) {
         console.log(value);
-        sendValue = value;
+        stepperValue = value;
         //set the listener to send the value
     };
     
@@ -37,7 +38,9 @@ function stepperKnob() {
     elem.appendChild(b);
     var parent = document.getElementById('controlsView');
     parent.appendChild(elem);
-
+    b.addEventListener('touchstart', function() {
+        rotateStepper(stepperValue);
+    });
 }
 
 
