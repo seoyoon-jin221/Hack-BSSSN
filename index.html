@@ -3,6 +3,8 @@
 
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no,
 		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
@@ -121,65 +123,12 @@
 		<script src="libs/evothings/easyble/easyble.js"></script>
 		<script src="libs/evothings/arduinoble/arduinoble.js"></script>
 		<script src="pureknob.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			// <![CDATA[
-			
+		<script src="stepperControl.js" type="text/javascript"></script>
+		<script src="distanceControl.js" type="text/javascript"></script>
+		<script src="heightControl.js" type="text/javascript"></script>
+		<script src="clawControl.js" type="text/javascript"></script>
 
-			function stepperKnob() {
-				// Create knob element, 300 x 300 px in size.
-				var knob = pureknob.createKnob(300, 300);
-				
-				// Set properties.
-				knob.setProperty('angleStart', -1 * Math.PI);
-				knob.setProperty('angleEnd', 1 * Math.PI);
-				knob.setProperty('colorFG', '#88ff88');
-				knob.setProperty('trackWidth', 0.4);
-				knob.setProperty('valMin', -180);
-				knob.setProperty('valMax', 180);
-				
-				// Set initial value.
-				knob.setValue(0);
-				
-			
-				var listener = function(knob, value) {
-					console.log(value);
-					sendValue = value;
-					//set the listener to send the value
-				};
-				
-				knob.addListener(listener);
-				
-				// Create element node.
-				var node = knob.node();
-				
-				node.style.setProperty('float','left');
-
-				// Add it to the DOM.
-				var elem = document.createElement("div");
-				elem.appendChild(node);
-				
-				var sendButton = document.createElement("div");
-				sendButton.style.setProperty('border', '1px solid black');
-				sendButton.style.setProperty('height', '300px')
-				var sendText = document.createElement("p");
-				sendText.style.setProperty('margin', 'auto');
-				sendText.innerText = "Rotate Stepper";
-				sendButton.appendChild(sendText);
-				elem.appendChild(sendButton);
-				sendButton.style.setProperty('float', 'right');
-				var parent = document.getElementById('controlsView');
-				parent.appendChild(elem);
-			}
-			
 		
-			function ready() {
-				stepperKnob();
-				
-			}
-
-			document.addEventListener('DOMContentLoaded', ready, false);
-			// ]]>
-		</script>
 	</div>
 </body>
 

@@ -623,16 +623,14 @@ function PureKnob() {
 			var rect = canvas.getBoundingClientRect();
 			var offsetX = rect.left;
 			var offsetY = rect.top;
-			console.log(`offsetY: ${offsetY}`);
 			var width = canvas.scrollWidth;
+			console.log(`width: ${width}`);
 			var height = canvas.scrollHeight;
 			console.log(`height: ${height}`);
-			var centerX =  0.5 * width;
+			var centerX = 0.5 * width;
 			var centerY = 0.5 * height;
-			console.log(`CenterY: ${centerY}`);
 			var touches = e.targetTouches;
 			var touch = null;
-			
 			
 			/*
 			 * If there are touches, extract the first one.
@@ -656,9 +654,6 @@ function PureKnob() {
 			
 			var relX = x - centerX;
 			var relY = y - centerY;
-			console.log(`Y: ${y}`);
-			
-			console.log(`relY: ${relY}`);
 			var angleStart = properties.angleStart;
 			var angleEnd = properties.angleEnd;
 			var angleDiff = angleEnd - angleStart;
@@ -836,7 +831,6 @@ function PureKnob() {
 		var touchStartListener = function(e) {
 			var properties = knob._properties;
 			var readonly = properties.readonly;
-			console.log("touch started");
 		
 			/*
 			 * If knob is not read-only, process touch event.
