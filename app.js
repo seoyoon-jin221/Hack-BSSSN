@@ -12,45 +12,6 @@ var servoControl = document.getElementById('servo-control');
 
 var servoButtons = servoControl.getElementsByClassName('button');
 
-servoButtons[0].addEventListener( //up button
-    'touchstart',
-    function(e) {
-        console.log("up touch started");
-      //  rotateStepper(180);
-      //  app.increaseServoAngle();  
-        setHeight(90);
-        e.preventDefault();
-        console.log("Pressing!");
-    }
-);
-
-servoButtons[0].addEventListener(
-    'touchend',
-    function() {
-        console.log("up touch ended");
-        counter = 0;
-    }
-);
-
-servoButtons[1].addEventListener( //down button
-    'touchstart',
-    function(e) {
-        console.log("down touch started");
-        rotateStepper(-180);
-       // app.decreaseServoAngle();
-        e.preventDefault();
-        console.log("Pressing!");
-    }
-);
-
-
-servoButtons[1].addEventListener(
-    'touchend',
-    function() {
-        console.log("down touch ended");
-        counter = 0;
-    }
-);
 
 var app = {}
 
