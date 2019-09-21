@@ -18,7 +18,7 @@ servoButtons[0].addEventListener( //up button
         console.log("up touch started");
       //  rotateStepper(180);
       //  app.increaseServoAngle();  
-        setHeight(45);
+        setHeight(90);
         e.preventDefault();
         console.log("Pressing!");
     }
