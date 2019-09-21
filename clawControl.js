@@ -45,19 +45,29 @@ function clawKnob() {
 
     var closeClawButton = document.createElement("button");
     closeClawButton.className = "btn btn-outline-secondary";
-    closeClawButton.innerText = "Close Claw Completely";
+    closeClawButton.innerText = "Close Claw";
     elem.appendChild(closeClawButton);
+    closeClawButton.addEventListener('touchstart', function() {
+        closeClaw();
+    });
+
     
     var openClawButton = document.createElement("button");
     openClawButton.className = "btn btn-outline-secondary";
     openClawButton.innerText = "Open Claw";
-    elem.appendChild(closeClawButton);
+    elem.appendChild(openClawButton);
+    openClawButton.addEventListener('touchstart', function() {
+        openClaw();
+    })
     
     //step closeclawbubtton
     var stepCloseClawButton = document.createElement("button");
     stepCloseClawButton.className = "btn btn-outline-secondary";
     stepCloseClawButton.innerText = "Step Close Claw";
     elem.appendChild(stepCloseClawButton);
+    stepCloseClawButton.addEventListener('touchstart', function() {
+        stepCloseClaw();
+    })
 
     var parent = document.getElementById('controlsView');
     parent.appendChild(elem);
