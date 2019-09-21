@@ -17,7 +17,7 @@ function heightKnob() {
 
     var listener = function(knob, value) {
         console.log(value);
-        sendValue = value;
+        heightValue = value;
         //set the listener to send the value
     };
     
@@ -39,6 +39,7 @@ function heightKnob() {
     var parent = document.getElementById('controlsView');
     parent.appendChild(elem);
     b.addEventListener('touchstart', function() {
+        console.log("height clicked");
         setHeight(heightValue);
     });
 }

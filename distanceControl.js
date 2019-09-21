@@ -1,3 +1,4 @@
+var distanceValue;
 function distanceKnob() {
     // Create knob element, 300 x 300 px in size.
     var knob = pureknob.createKnob(300, 300);
@@ -16,7 +17,7 @@ function distanceKnob() {
 
     var listener = function(knob, value) {
         console.log(value);
-        sendValue = value;
+        distanceValue = value;
         //set the listener to send the value
     };
     
@@ -37,6 +38,10 @@ function distanceKnob() {
     elem.appendChild(b);
     var parent = document.getElementById('controlsView');
     parent.appendChild(elem);
+    b.addEventListener('touchstart', function() {
+        console.log("distance clicked");
+        setDistance(distanceValue);
+    });
 
 }
 
