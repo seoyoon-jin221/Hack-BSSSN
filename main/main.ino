@@ -44,7 +44,11 @@ void setDistance(int distance) {
 }
 
 void setClaw(int pos) {
-  clawServo.write(pos);
+  for (int i = clawPos; i < pos; i++) {
+    clawServo.write(i);
+    delay(100);
+  }
+  
   clawPos = pos;
   
 }
