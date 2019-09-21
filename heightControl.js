@@ -42,6 +42,23 @@ function heightKnob() {
         console.log("height clicked");
         setHeight(heightValue);
     });
+
+    var stepIncreaseHeightButton = document.createElement("button");
+    stepIncreaseHeightButton.className = "btn btn-outline-secondary";
+    stepIncreaseHeightButton.innerText = "Step Increase Height";
+    elem.appendChild(stepIncreaseHeightButton);
+    stepIncreaseHeightButton.addEventListener('touchstart', function() {
+        stepIncreaseHeight();
+    })
+    
+    //step closeclawbubtton
+    var stepDecreaseHeightButton = document.createElement("button");
+    stepDecreaseHeightButton.className = "btn btn-outline-secondary";
+    stepDecreaseHeightButton.innerText = "Step Decrease Height";
+    elem.appendChild(stepDecreaseHeightButton);
+    stepDecreaseHeightButton.addEventListener('touchstart', function() {
+        stepDecreaseHeight();
+    })
 }
 
 

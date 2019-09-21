@@ -8,8 +8,8 @@ function clawKnob() {
     knob.setProperty('angleEnd', 1 * Math.PI);
     knob.setProperty('colorFG', 'red');
     knob.setProperty('trackWidth', 0.4);
-    knob.setProperty('valMin', -180);
-    knob.setProperty('valMax', 180);
+    knob.setProperty('valMin', 0);
+    knob.setProperty('valMax', 90);
     
     // Set initial value.
     knob.setValue(0);

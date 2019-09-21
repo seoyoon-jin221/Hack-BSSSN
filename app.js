@@ -8,11 +8,6 @@ document.addEventListener(
     }
 );
 
-var servoControl = document.getElementById('servo-control');
-
-var servoButtons = servoControl.getElementsByClassName('button');
-
-
 var app = {}
 
 app.SERVICE_UUID='0000ffe0-0000-1000-8000-00805f9b34fb';
@@ -81,13 +76,16 @@ app.disconnect = function(errorMessage)
     evothings.easyble.stopScan();
     evothings.easyble.closeConnectedDevices();
     app.showStart();
+    document.getElementById('controlsView').style.setProperty('display', 'none');
+    document.getElementById('startView').style.setProperty('display', 'block');
     
 }
 
 function serviceSuccess(device)
 {
     console.log('The bluetooth module can now read and write');
-    app.showControls();
+    document.getElementById('controlsView').style.setProperty('display', 'block');
+    document.getElementById('startView').style.setProperty('display', 'none');
     app.device.writeCharacteristic(
         app.SERVICE_UUID,
         function()
@@ -191,12 +189,12 @@ function rotateStepper(angle) {
 }
 
 function setHeight(height) {
-    app.sendData([2, height]);
+    app.sendData([2, height * 2]);
 
 }
 
 function setDistance(distance) {
-    app.sendData([3, distance]);
+    app.sendData([3, distance * 3]);
 }
 
 function setClaw(grasp) {
@@ -213,4 +211,20 @@ function closeClaw() {
 
 function stepCloseClaw() {
     app.sendData([5]);
+}
+
+function stepIncreaseDistance() {
+    app.sendData([6]);
+}
+
+function stepDecreaseDistance() {
+    app.sendData([7]);
+}
+
+function stepIncreaseHeight() {
+    app.sendData([8]);
+}
+
+function stepDecreaseHeight() {
+    app.sendData([9]);
 }

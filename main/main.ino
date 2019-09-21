@@ -5,12 +5,15 @@
 const int stepsPerRevolution = 520; 
 Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
 Servo heightServo;  // create servo object to control a servo
-Servo distanceServo; // servo to control bar moving back and forth
+Servo distanceServoLeft; // servo to control bar moving back and forth
+Servo distanceServoRight;
 Servo clawServo;
 
 SoftwareSerial mySerial(12, 13); // RX, TX  
 
 int clawPos = 0;
+int heightPos = 0; 
+int distancePos = 0; 
 
 void stepperRotateClock(int angle) { 
   Serial.println("rotating");
@@ -28,13 +31,16 @@ void stepperRotateAnti(int angle) {
 
 void setHeight(int height) {
   Serial.println("Changing Height");
-  int h = map(height, 0, 90, 0, 180);
+  int h = height;
   heightServo.write(h);
+  heightPos = h;
 }
 
 void setDistance(int distance) {
-  int d = map(distance, 0, 100, 0, 180); // start at zero(2inches) and end at 100(6inches)
-  distanceServo.write(d);
+  int d = distance;
+  distanceServoLeft.write(d);
+  distanceServoRight.write(180-d);
+  distancePos = d;
 }
 
 void setClaw(int pos) {
@@ -49,9 +55,11 @@ void setup() {
   myStepper.setSpeed(12);
   heightServo.attach(7);
   heightServo.write(0);
-  distanceServo.attach(6);
-  distanceServo.write(0);
-  clawServo.attach(5);
+  distanceServoLeft.attach(6);
+  distanceServoLeft.write(0);
+  distanceServoRight.attach(5);
+  distanceServoRight.write(180);
+  clawServo.attach(4);
   clawServo.write(0);
 }
 
@@ -108,6 +116,22 @@ void loop() {
       case 5:
       Serial.println("Step close Claw");
       setClaw(clawPos + 5);
+      break;
+      case 6:
+      Serial.print("Step increase distance");
+      setDistance(distancePos + 15);
+      break;
+      case 7: 
+      Serial.print("Step decrease distance");
+      setDistance(distancePos - 15);
+      break;
+      case 8: 
+      Serial.print("Step increase Height");
+      setHeight(heightPos + 10);
+      break;
+      case 9:
+      Serial.print("Step decrease Height");
+      setHeight(heightPos - 10);
       break;
     }
   }

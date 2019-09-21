@@ -43,6 +43,23 @@ function distanceKnob() {
         setDistance(distanceValue);
     });
 
+    var stepIncreaseDistanceButton = document.createElement("button");
+    stepIncreaseDistanceButton.className = "btn btn-outline-secondary";
+    stepIncreaseDistanceButton.innerText = "Step Increase Distance";
+    elem.appendChild(stepIncreaseDistanceButton);
+    stepIncreaseDistanceButton.addEventListener('touchstart', function() {
+        stepIncreaseDistance();
+    })
+    
+    //step closeclawbubtton
+    var stepDecreaseDistanceButton = document.createElement("button");
+    stepDecreaseDistanceButton.className = "btn btn-outline-secondary";
+    stepDecreaseDistanceButton.innerText = "Step Decrease Distance";
+    elem.appendChild(stepDecreaseDistanceButton);
+    stepDecreaseDistanceButton.addEventListener('touchstart', function() {
+        stepDecreaseDistance();
+    })
+
 }
 
 
